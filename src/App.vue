@@ -1,0 +1,46 @@
+<script setup>
+import TheHeader from './components/TheHeader.vue'
+import TheDrawer from './components/TheDrawer.vue'
+import { useStore } from './store'
+import { onMounted } from 'vue'
+import axios from 'axios'
+import TheCategories from './components/TheCategories.vue'
+import TheFilters from './components/TheFilters.vue'
+
+const store = useStore()
+
+const { setItems, setFavorities, setCart } = store
+
+const localCart = localStorage.getItem('cart')
+
+const localFavorities = localStorage.getItem('favorities')
+
+onMounted(() => {
+  axios
+    .get('https://fakestoreapi.com/products')
+    .then((response) => {
+      setItems(response.data)
+      if (localCart) {
+        setCart(JSON.parse(localCart))
+      }
+      if (localFavorities) {
+        setFavorities(JSON.parse(localFavorities))
+      }
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+})
+</script>
+
+<template>
+  <TheDrawer />
+  <div class="bg-white w-4/5 m-auto rounded-xl shadow-xl mt-14">
+    <TheHeader class="flex flex-wrap" />
+    <TheCategories class="flex justify-center mb-5" />
+    <TheFilters class="px-10"/>
+    <main>
+      <RouterView />
+    </main>
+  </div>
+</template>
