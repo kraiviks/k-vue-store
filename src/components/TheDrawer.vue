@@ -7,6 +7,10 @@ import { useStore } from '../store'
 const store = useStore()
 const { cart, drawerIsOpen: isOpen } = storeToRefs(store)
 const { handlerOpenDrawer } = store
+
+const handlerCreateOrder = () => {
+  alert('Order is created')
+}
 </script>
 
 <template>
@@ -38,8 +42,9 @@ const { handlerOpenDrawer } = store
             <b>{{ cart.tax > 0 ? cart.tax.toFixed(2) : 0 }}$</b>
           </div>
           <button
-            :disabled="!cart.totalItems"
             class="mt-4 bg-custom-btn w-full rounded-xl py-4 text-white hover:bg-custom-btn-hover active:bg-custom-btn-active disabled:cursor-default disabled:bg-slate-300 transition cursor-pointer"
+            :disabled="!cart.totalItems"
+            @click="handlerCreateOrder"
           >
             Make an order
           </button>
