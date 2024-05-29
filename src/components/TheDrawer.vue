@@ -17,31 +17,40 @@ const { handlerOpenDrawer } = store
     >
       <DrawerHead @click="handlerOpenDrawer" />
 
-      <CartListItem :items="cart.products" />
+      <div v-if="cart.products.length" class="flex flex-col h-full">
+        <CartListItem :items="cart.products" />
 
-      <div class="flex flex-col gap-5 mt-7">
-        <div class="flex gap-2">
-          <span>Total items:</span>
-          <div class="flex-1 border-b border-dashed"></div>
-          <b>{{ cart.totalItems }}</b>
-        </div>
-        <div class="flex gap-2">
-          <span>Total price:</span>
-          <div class="flex-1 border-b border-dashed"></div>
-          <b>{{ cart.totalPrice > 0 ? cart.totalPrice.toFixed(2) : 0 }}$</b>
-        </div>
+        <div class="flex flex-col gap-5 mt-7">
+          <div class="flex gap-2">
+            <span>Total items:</span>
+            <div class="flex-1 border-b border-dashed"></div>
+            <b>{{ cart.totalItems }}</b>
+          </div>
+          <div class="flex gap-2">
+            <span>Total price:</span>
+            <div class="flex-1 border-b border-dashed"></div>
+            <b>{{ cart.totalPrice > 0 ? cart.totalPrice.toFixed(2) : 0 }}$</b>
+          </div>
 
-        <div class="flex gap-2">
-          <span>Tax 5%:</span>
-          <div class="flex-1 border-b border-dashed"></div>
-          <b>{{ cart.tax > 0 ? cart.tax.toFixed(2) : 0 }}$</b>
+          <div class="flex gap-2">
+            <span>Tax 5%:</span>
+            <div class="flex-1 border-b border-dashed"></div>
+            <b>{{ cart.tax > 0 ? cart.tax.toFixed(2) : 0 }}$</b>
+          </div>
+          <button
+            :disabled="!cart.totalItems"
+            class="mt-4 bg-custom-btn w-full rounded-xl py-4 text-white hover:bg-custom-btn-hover active:bg-custom-btn-active disabled:cursor-default disabled:bg-slate-300 transition cursor-pointer"
+          >
+            Make an order
+          </button>
         </div>
-        <button
-          :disabled="!cart.totalItems"
-          class="mt-4 bg-custom-btn w-full rounded-xl py-4 text-white hover:bg-custom-btn-hover active:bg-custom-btn-active disabled:cursor-default disabled:bg-slate-300 transition cursor-pointer"
-        >
-          Make an order
-        </button>
+      </div>
+      <div v-else class="flex flex-col h-full items-center justify-center">
+        <img src="/package-icon.png" width="120" height="120" alt="" />
+        <p class="text-slate-400 font-bold text-center">The basket is empty</p>
+        <p class="text-slate-400 text-center max-w-52">
+          Add the product to the cart to place an order
+        </p>
       </div>
     </div>
   </Transition>
