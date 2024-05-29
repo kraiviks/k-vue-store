@@ -30,7 +30,7 @@ const onClickFavorite = (product) => {
 </script>
 
 <template>
-  <div class="grid grid-cols-4 gap-10 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
+  <div class="grid grid-cols-4 gap-10 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1" v-auto-animate>
     <TheCard
       v-for="item in items"
       :key="item.id"

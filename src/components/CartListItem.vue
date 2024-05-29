@@ -20,7 +20,7 @@ const onClickRemove = (id) => {
 </script>
 
 <template>
-  <div class="flex flex-col flex-1 gap-4 overflow-auto">
+  <div class="flex flex-col flex-1 gap-4 overflow-auto" v-auto-animate>
     <CartItem
       v-for="item in items"
       :key="item.id"
