@@ -35,11 +35,11 @@ onMounted(async () => {
 
 <template>
   <TheDrawer />
-  <div class="bg-white w-4/5 m-auto rounded-xl shadow-xl mt-14">
+  <div class="bg-white w-4/5 m-auto rounded-xl shadow-xl my-14">
     <TheHeader class="flex flex-wrap" />
     <TheCategories class="flex justify-center mb-5" />
     <TheFilters class="px-10" />
-    <main>
+    <main class="py-10">
       <RouterView />
     </main>
   </div>

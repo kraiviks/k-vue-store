@@ -11,7 +11,7 @@ const { handlerOpenDrawer } = store
 <template>
   <header class="flex justify-between border-b border-slate-100 px-10 py-8">
     <RouterLink to="/">
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-4 max-md: mb-10">
         <img src="/logo.svg" alt="Logo" class="w-10" />
         <div>
           <h2 class="text-xl font-bold uppercase">store</h2>
