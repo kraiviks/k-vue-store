@@ -1,5 +1,5 @@
 <script setup>
-import TheCard from '@/components/TheCard.vue'
+import CardItem from '@/components/CardItem.vue'
 import { useStore } from '@/store'
 import { storeToRefs } from 'pinia'
 defineProps({
@@ -31,7 +31,7 @@ const onClickFavorite = (product) => {
 
 <template>
   <div class="grid grid-cols-4 gap-10 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1" v-auto-animate>
-    <TheCard
+    <CardItem
       v-for="item in items"
       :key="item.id"
       :id="item.id"

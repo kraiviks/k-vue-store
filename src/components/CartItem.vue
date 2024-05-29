@@ -5,7 +5,8 @@ defineProps({
   price: Number,
   quantity: Number,
   onClickAdd: Function,
-  onClickRemove: Function
+  onClickRemoveOneItem: Function,
+  onClickRemoveAllItem: Function
 })
 </script>
 
@@ -19,11 +20,11 @@ defineProps({
       <div class="flex justify-between mt-2">
         <b>{{ price }}$</b>
         <div class="flex items-center gap-2">
-          <span class="cursor-pointer p-3" @click="onClickRemove">-</span>{{ quantity
+          <span class="cursor-pointer p-3" @click="onClickRemoveOneItem">-</span>{{ quantity
           }}<span class="cursor-pointer p-3" @click="onClickAdd">+</span>
         </div>
         <img
-          @click="onClickRemove"
+          @click="onClickRemoveAllItem"
           src="/close.svg"
           alt="close"
           class="opacity-30 hover:opacity-100 cursor-pointer transition"

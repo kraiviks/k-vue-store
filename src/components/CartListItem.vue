@@ -8,14 +8,17 @@ defineProps({
 
 const store = useStore()
 
-const { removeFromCart, addToCart } = store
+const { removeOneProductFromCart, removeProductFromCart, addToCart } = store
 
 const onClickAdd = (item) => {
   addToCart(item)
 }
 
-const onClickRemove = (id) => {
-  removeFromCart(id)
+const onClickRemoveOneItem = (id) => {
+  removeOneProductFromCart(id)
+}
+const onClickRemoveAllItem = (id) => {
+  removeProductFromCart(id)
 }
 </script>
 
@@ -30,7 +33,8 @@ const onClickRemove = (id) => {
       :price="item.price"
       :quantity="item.quantity"
       :onClickAdd="() => onClickAdd(item)"
-      :onClickRemove="() => onClickRemove(item.id)"
+      :onClickRemoveOneItem="() => onClickRemoveOneItem(item.id)"
+      :onClickRemoveAllItem="() => onClickRemoveAllItem(item.id)"
     />
   </div>
 </template>
