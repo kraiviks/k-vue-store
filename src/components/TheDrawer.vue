@@ -17,7 +17,7 @@ const { handlerOpenDrawer } = store
     >
       <DrawerHead @click="handlerOpenDrawer" />
 
-      <div v-if="cart.products.length" class="flex flex-col h-full">
+      <div v-if="cart.products.length" class="flex flex-col h-[93%]">
         <CartListItem :items="cart.products" />
 
         <div class="flex flex-col gap-5 mt-7">
