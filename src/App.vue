@@ -6,6 +6,7 @@ import TheHeader from './components/TheHeader.vue'
 import TheCategories from './components/TheCategories.vue'
 import TheDrawer from './components/TheDrawer.vue'
 import TheFilters from './components/TheFilters.vue'
+import TheBanner from './components/TheBanner.vue'
 
 const store = useStore()
 
@@ -39,6 +40,7 @@ onMounted(async () => {
     <TheHeader class="flex flex-wrap" />
     <TheCategories class="flex justify-center mb-5" />
     <TheFilters class="px-10" />
+    <TheBanner imageUrl="/banner.jpg" />
     <main class="py-10">
       <RouterView />
     </main>
