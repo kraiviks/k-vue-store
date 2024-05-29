@@ -24,3 +24,17 @@ export const filterItems = (allItems, cat, filters) => {
 
   return filteredItems
 }
+
+export const debounce = (func, delay) => {
+  let timeout;
+
+  return (...args) => {
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+
+    timeout = setTimeout(() => {
+      func(...args);
+    }, delay);
+  };
+};

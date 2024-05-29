@@ -19,7 +19,7 @@ const [parent] = useAutoAnimate({duration: 300})
     :class="handlerOnClick && 'cursor-pointer'"
     @click="handlerOnClick"
     ref="parent"
-  >
+    >
     <img v-if="isShow" src="/banner.jpg" alt="banner" class="rounded-3xl lg:w-[50%]" />
   </div>
 </template>

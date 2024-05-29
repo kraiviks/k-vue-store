@@ -1,5 +1,6 @@
 <script setup>
 import { useStore } from '@/store'
+import { debounce } from '@/utils/helpers';
 import { storeToRefs } from 'pinia'
 const store = useStore()
 const { category, filters } = storeToRefs(store)
@@ -11,6 +12,8 @@ const onChangeSelect = ({ target }) => {
 const onChangeSearch = ({ target }) => {
   store.setSearchQuery(target.value)
 }
+
+const debouncedOnChangeSearch = debounce(onChangeSearch, 300);
 </script>
 
 <template>
@@ -31,7 +34,7 @@ const onChangeSearch = ({ target }) => {
       <div class="relative max-md:w-full">
         <img src="/search.svg" alt="search-icon" class="absolute left-4 top-3" />
         <input
-          @input="onChangeSearch"
+          @input="debouncedOnChangeSearch"
           :value="filters.searchQuery"
           class="border rounded-md py-2 pl-11 pr-4 outline-none focus:border-gray-400 max-md:w-full"
           type="text"
