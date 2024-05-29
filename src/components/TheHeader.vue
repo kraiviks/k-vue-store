@@ -30,7 +30,7 @@ const { handlerOpenDrawer } = store
           <b>{{ cart.totalPrice > 0 ? cart.totalPrice.toFixed(2) : 0 }}$</b>
         </li>
         <li
-          :class="favorities.length > 0 ? 'text-black' : 'text-slate-400'"
+          :class="favorities.length > 0 ? 'text-black font-bold' : 'text-slate-400'"
           class="flex items-center gap-3 cursor-pointer hover:text-black transition"
         >
           <RouterLink to="/favorities" class="flex items-center gap-3">
