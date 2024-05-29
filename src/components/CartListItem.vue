@@ -1,6 +1,6 @@
 <script setup>
-import CartItem from './CartItem.vue'
-import { useStore } from '../store'
+import CartItem from '@/components/CartItem.vue'
+import { useStore } from '@/store'
 
 defineProps({
   items: Array

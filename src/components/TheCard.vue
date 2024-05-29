@@ -1,5 +1,5 @@
 <script setup>
-import { useStore } from '../store'
+import { useStore } from '@/store'
 import { storeToRefs } from 'pinia'
 defineProps({
   id: Number,

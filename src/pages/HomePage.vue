@@ -1,6 +1,6 @@
 <script setup>
 import CardList from '@/components/CardList.vue'
-import { useStore } from '../store'
+import { useStore } from '@/store'
 import { storeToRefs } from 'pinia'
 import { filterItems } from '@/utils/helpers'
 const store = useStore()

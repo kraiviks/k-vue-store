@@ -1,12 +1,13 @@
 <script setup>
 import { onMounted } from 'vue'
 import axios from 'axios'
-import { useStore } from './store'
-import TheHeader from './components/TheHeader.vue'
-import TheCategories from './components/TheCategories.vue'
-import TheDrawer from './components/TheDrawer.vue'
-import TheFilters from './components/TheFilters.vue'
-import TheBanner from './components/TheBanner.vue'
+import { useStore } from '@/store'
+import TheHeader from '@/components/TheHeader.vue'
+import TheCategories from '@/components/TheCategories.vue'
+import TheDrawer from '@/components/TheDrawer.vue'
+import TheFilters from '@/components/TheFilters.vue'
+import TheBanner from '@/components/TheBanner.vue'
+import router from '@/router'
 
 const store = useStore()
 
@@ -40,7 +41,7 @@ onMounted(async () => {
     <TheHeader class="flex flex-wrap" />
     <TheCategories class="flex justify-center mb-5" />
     <TheFilters class="px-10" />
-    <TheBanner imageUrl="/banner.jpg" />
+    <TheBanner imageUrl="/banner.jpg" :handlerOnClick="() => router.push('/')" />
     <main class="py-10">
       <RouterView />
     </main>

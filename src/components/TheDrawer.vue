@@ -1,8 +1,8 @@
 <script setup>
-import DrawerHead from './DrawerHead.vue'
-import CartListItem from './CartListItem.vue'
+import DrawerHead from '@/components/DrawerHead.vue'
+import CartListItem from '@/components/CartListItem.vue'
 import { storeToRefs } from 'pinia'
-import { useStore } from '../store'
+import { useStore } from '@/store'
 
 const store = useStore()
 const { cart, drawerIsOpen: isOpen } = storeToRefs(store)

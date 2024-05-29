@@ -1,6 +1,6 @@
 <script setup>
-import TheCard from './TheCard.vue'
-import { useStore } from '../store'
+import TheCard from '@/components/TheCard.vue'
+import { useStore } from '@/store'
 import { storeToRefs } from 'pinia'
 defineProps({
   items: Array
