@@ -3,18 +3,19 @@ import { defineStore } from 'pinia'
 export const useStore = defineStore('store', {
   state: () => ({
     items: [],
+    favorities: [],
     cart: {
       products: [],
       totalPrice: 0,
       totalItems: 0,
       tax: 0
     },
-    favorities: [],
-    total: 0,
-    tax: 0,
     category: 'All',
-    isAdmin: true,
-    hasChanged: true,
+    filters: {
+      byPrice: 'default',
+      searchQuery: ''
+    },
+    searchValue: '',
     drawerIsOpen: false
   }),
 
@@ -29,11 +30,11 @@ export const useStore = defineStore('store', {
       const existingProductIndex = this.cart.products.findIndex((product) => product.id === item.id)
 
       if (existingProductIndex !== -1) {
-        // Існуючий товар
+        // Existing product
         this.cart.products[existingProductIndex].quantity += 1
       } else {
-        // Новий товар
-        const newItem = { ...item, quantity: 1 } // Встановлення кількості за замовчуванням
+        // New product
+        const newItem = { ...item, quantity: 1 }
         this.cart.products.push(newItem)
       }
 
@@ -47,14 +48,14 @@ export const useStore = defineStore('store', {
       const productToRemove = this.cart.products.find((item) => item.id === id)
 
       if (productToRemove) {
-        // Знайдено продукт
+        // Find the product to remove
         productToRemove.quantity--
 
         if (productToRemove.quantity < 1) {
-          // Quantity стає негативним, видаляємо товар
+          // Quantity is 0, remove it from the cart
           this.cart.products = this.cart.products.filter((item) => item !== productToRemove)
         }
-        // Оновлення totalPrice, totalItems та tax
+        // Update totalPrice, totalItems and tax
         if (this.cart.totalItems > 0) {
           this.cart.totalPrice -= productToRemove.price
           this.cart.totalItems -= 1
@@ -63,7 +64,7 @@ export const useStore = defineStore('store', {
 
         localStorage.setItem('cart', JSON.stringify(this.cart))
       } else {
-        // Продукт не знайдено, нічого не робимо
+        // Product not found
         console.error(`Product with ID ${id} not found in cart`)
       }
     },
@@ -75,8 +76,6 @@ export const useStore = defineStore('store', {
       if (!findItem) {
         this.favorities.push(item)
       }
-      console.log(findItem)
-
       localStorage.setItem('favorities', JSON.stringify(this.favorities))
     },
     setFavorities(favorities) {
@@ -89,8 +88,11 @@ export const useStore = defineStore('store', {
     handlerOpenDrawer() {
       this.drawerIsOpen = !this.drawerIsOpen
     },
-    handlerOpenAuth() {
-      this.authIsOpen = !this.authIsOpen
+    setSorting(value) {
+      this.filters.byPrice = value
+    },
+    setSearchQuery(value) {
+      this.filters.searchQuery = value
     }
   }
 })
