@@ -19,22 +19,22 @@ export const filterItems = (allItems, cat, filters) => {
   }
 
   if (cat.toLowerCase() !== 'all') {
-    filteredItems = filteredItems.filter((item) => item.category.includes(cat.toLowerCase()))
+    filteredItems = filteredItems.filter((item) => item.category === cat.toLowerCase())
   }
 
   return filteredItems
 }
 
 export const debounce = (func, delay) => {
-  let timeout;
+  let timeout
 
   return (...args) => {
     if (timeout) {
-      clearTimeout(timeout);
+      clearTimeout(timeout)
     }
 
     timeout = setTimeout(() => {
-      func(...args);
-    }, delay);
-  };
-};
+      func(...args)
+    }, delay)
+  }
+}
