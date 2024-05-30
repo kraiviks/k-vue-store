@@ -70,16 +70,14 @@ export const useStore = defineStore('store', {
     },
     removeProductFromCart(id) {
       const productToRemove = this.cart.products.find((item) => item.id === id)
-    
+
       if (productToRemove) {
         this.cart.products = this.cart.products.filter((item) => item !== productToRemove)
-    
-        if (this.cart.totalItems > 0) {
-          this.cart.totalPrice -= productToRemove.price
-          this.cart.totalItems -= 1
-          this.cart.tax = this.cart.totalPrice * 0.05
-        }
-    
+
+        this.cart.totalPrice -= productToRemove.price * productToRemove.quantity
+        this.cart.totalItems -= productToRemove.quantity
+        this.cart.tax = this.cart.totalPrice * 0.05
+
         localStorage.setItem('cart', JSON.stringify(this.cart))
       } else {
         console.error(`Product with ID ${id} not found in cart`)
