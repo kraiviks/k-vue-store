@@ -9,14 +9,14 @@ defineProps({
 const store = useStore()
 const { favorities, cart } = storeToRefs(store)
 
-const { addToCart, removeFromCart, addToFavorities, removeFromFavorities } = store
+const { addToCart, addToFavorities, removeFromFavorities, removeProductFromCart } = store
 
 const onClickAdd = (item) => {
   const isFinded = cart.value.products.find((product) => product.id === item.id)
   if (!isFinded) {
     addToCart(item)
   } else {
-    removeFromCart(item.id)
+    removeProductFromCart(item.id)
   }
 }
 const onClickFavorite = (product) => {
@@ -30,7 +30,10 @@ const onClickFavorite = (product) => {
 </script>
 
 <template>
-  <div class="grid grid-cols-4 gap-10 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1" v-auto-animate>
+  <div
+    class="grid grid-cols-4 gap-10 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1"
+    v-auto-animate
+  >
     <CardItem
       v-for="item in items"
       :key="item.id"
@@ -43,6 +46,7 @@ const onClickFavorite = (product) => {
       :isFavorite="true"
       :onClickAdd="() => onClickAdd(item)"
       :onClickFavorite="() => onClickFavorite(item)"
+      :onClickRemoveAllItem="() => removeProductFromCart(item.id)"
     />
   </div>
 </template>
