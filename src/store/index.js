@@ -103,6 +103,9 @@ export const useStore = defineStore('store', {
     handlerOpenDrawer() {
       this.drawerIsOpen = !this.drawerIsOpen
     },
+    handlerCloseDrawer() {
+      this.drawerIsOpen = false
+    },
     setSorting(value) {
       this.filters.byPrice = value
     },

@@ -1,16 +1,22 @@
 <script setup>
+import { ref } from 'vue'
 import DrawerHead from '@/components/DrawerHead.vue'
 import CartListItem from '@/components/CartListItem.vue'
 import { storeToRefs } from 'pinia'
 import { useStore } from '@/store'
+import { onClickOutside } from '@vueuse/core'
 
 const store = useStore()
 const { cart, drawerIsOpen: isOpen } = storeToRefs(store)
-const { handlerOpenDrawer } = store
+const { handlerOpenDrawer, handlerCloseDrawer } = store
+
+const target = ref(null)
 
 const handlerCreateOrder = () => {
   alert('Order is created')
 }
+
+onClickOutside(target, () => handlerCloseDrawer())
 </script>
 
 <template>
@@ -18,6 +24,7 @@ const handlerCreateOrder = () => {
     <div
       v-show="isOpen"
       class="flex flex-col bg-white w-96 h-full fixed right-0 top-0 z-20 p-8 shadow-2xl"
+      ref="target"
     >
       <DrawerHead @click="handlerOpenDrawer" />
 
