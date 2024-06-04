@@ -1,20 +1,27 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 import DrawerHead from '@/components/DrawerHead.vue'
 import CartListItem from '@/components/CartListItem.vue'
 import { storeToRefs } from 'pinia'
 import { useStore } from '@/store'
-import { onClickOutside } from '@vueuse/core'
+import { onClickOutside, useSwipe } from '@vueuse/core'
 
 const store = useStore()
 const { cart, drawerIsOpen: isOpen } = storeToRefs(store)
 const { handlerOpenDrawer, handlerCloseDrawer } = store
+const { isSwiping, direction } = useSwipe(target)
 
 const target = ref(null)
 
 const handlerCreateOrder = () => {
   alert('Order is created')
 }
+
+watchEffect(() => {
+  if (isSwiping.value && direction.value === 'right') {
+    handlerCloseDrawer()
+  }
+})
 
 onClickOutside(target, () => handlerCloseDrawer())
 </script>
@@ -27,7 +34,8 @@ onClickOutside(target, () => handlerCloseDrawer())
       ref="target"
     >
       <DrawerHead @click="handlerOpenDrawer" />
-
+      {{ isSwiping }}
+      {{ direction }}
       <div v-if="cart.products.length" class="flex flex-col h-[93%]">
         <CartListItem :items="cart.products" />
 
