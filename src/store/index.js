@@ -101,7 +101,7 @@ export const useStore = defineStore('store', {
       localStorage.setItem('favorities', JSON.stringify(this.favorities))
     },
     handlerOpenDrawer() {
-      this.drawerIsOpen = !this.drawerIsOpen
+      this.drawerIsOpen = true
     },
     handlerCloseDrawer() {
       this.drawerIsOpen = false

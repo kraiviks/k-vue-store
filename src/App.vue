@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watchEffect } from 'vue'
 import axios from 'axios'
 import { useStore } from '@/store'
 import TheHeader from '@/components/TheHeader.vue'
@@ -9,15 +9,25 @@ import TheFilters from '@/components/TheFilters.vue'
 import TheBanner from '@/components/TheBanner.vue'
 import router from '@/router'
 import { useAutoAnimate } from '@formkit/auto-animate/vue'
+import { useSwipe } from '@vueuse/core'
 
 const isShow = ref(false)
-const [parent] = useAutoAnimate({duration: 500})
+const [parent] = useAutoAnimate({ duration: 500 })
 
 const store = useStore()
-const { setItems, setFavorities, setCart } = store
+const { setItems, setFavorities, setCart, handlerOpenDrawer } = store
 
 const localCart = localStorage.getItem('cart')
 const localFavorities = localStorage.getItem('favorities')
+
+const targetMain = ref(null)
+const { isSwiping, direction } = useSwipe(targetMain)
+
+watchEffect(() => {
+  if (isSwiping.value && direction.value === 'left') {
+    handlerOpenDrawer()
+  }
+})
 
 onMounted(async () => {
   await axios
@@ -40,7 +50,7 @@ onMounted(async () => {
 
 <template>
   <TheDrawer />
-  <div class="bg-white w-[90%] m-auto rounded-xl shadow-xl my-14">
+  <div class="bg-white w-[90%] m-auto rounded-xl shadow-xl my-14" ref="targetMain">
     <TheHeader class="flex flex-wrap" />
     <TheCategories class="flex justify-center my-5" />
     <TheFilters class="px-10" />
