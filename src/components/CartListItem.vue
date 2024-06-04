@@ -7,13 +7,11 @@ defineProps({
 })
 
 const store = useStore()
-
 const { removeOneProductFromCart, removeProductFromCart, addToCart } = store
 
 const onClickAdd = (item) => {
   addToCart(item)
 }
-
 const onClickRemoveOneItem = (id) => {
   removeOneProductFromCart(id)
 }

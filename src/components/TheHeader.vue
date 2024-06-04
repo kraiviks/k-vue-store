@@ -6,16 +6,14 @@ import { onMounted, ref } from 'vue';
 
 const store = useStore()
 const { favorities, cart } = storeToRefs(store)
-
 const { handlerOpenDrawer } = store
 
 const isShow = ref(false)
+const [parent] = useAutoAnimate({duration: 450})
 
 onMounted(() => {
   isShow.value = true
 })
-
-const [parent] = useAutoAnimate({duration: 450})
 </script>
 
 <template>

@@ -1,17 +1,18 @@
 <script setup>
 import { useAutoAnimate } from '@formkit/auto-animate/vue'
 import { onMounted, ref } from 'vue'
+
 defineProps({
   imageUrl: String,
   handlerOnClick: Function
 })
+
 const isShow = ref(false)
+const [parent] = useAutoAnimate({duration: 450})
 
 onMounted(() => {
   isShow.value = true
 })
-
-const [parent] = useAutoAnimate({duration: 450})
 </script>
 <template>
   <div

@@ -4,6 +4,7 @@ import { debounce } from '@/utils/helpers';
 import { useAutoAnimate } from '@formkit/auto-animate/vue';
 import { storeToRefs } from 'pinia'
 import { onMounted, ref } from 'vue';
+
 const store = useStore()
 const { category, filters } = storeToRefs(store)
 const isShow = ref(false)
@@ -11,19 +12,16 @@ const isShow = ref(false)
 const onChangeSelect = ({ target }) => {
   store.setSorting(target.value)
 }
-
 const onChangeSearch = ({ target }) => {
   store.setSearchQuery(target.value)
 }
 
 const debouncedOnChangeSearch = debounce(onChangeSearch, 300);
 
-
+const [parent] = useAutoAnimate({ duration: 400 })
 onMounted(() => {
   isShow.value = true
 })
-
-const [parent] = useAutoAnimate({ duration: 400 })
 </script>
 
 <template>

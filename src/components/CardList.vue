@@ -2,13 +2,13 @@
 import CardItem from '@/components/CardItem.vue'
 import { useStore } from '@/store'
 import { storeToRefs } from 'pinia'
+
 defineProps({
   items: Array
 })
 
 const store = useStore()
 const { favorities, cart } = storeToRefs(store)
-
 const { addToCart, addToFavorities, removeFromFavorities, removeProductFromCart } = store
 
 const onClickAdd = (item) => {

@@ -8,18 +8,15 @@ import TheDrawer from '@/components/TheDrawer.vue'
 import TheFilters from '@/components/TheFilters.vue'
 import TheBanner from '@/components/TheBanner.vue'
 import router from '@/router'
-
 import { useAutoAnimate } from '@formkit/auto-animate/vue'
 
 const isShow = ref(false)
-
 const [parent] = useAutoAnimate({duration: 500})
-const store = useStore()
 
+const store = useStore()
 const { setItems, setFavorities, setCart } = store
 
 const localCart = localStorage.getItem('cart')
-
 const localFavorities = localStorage.getItem('favorities')
 
 onMounted(async () => {

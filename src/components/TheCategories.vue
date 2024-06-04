@@ -33,12 +33,11 @@ const categories = [
 ]
 
 const isShow = ref(false)
+const [parent] = useAutoAnimate({ duration: 300 })
 
 onMounted(() => {
   isShow.value = true
 })
-
-const [parent] = useAutoAnimate({ duration: 300 })
 </script>
 <template>
   <div ref="parent">
