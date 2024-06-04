@@ -45,7 +45,7 @@ onMounted(async () => {
   <TheDrawer />
   <div class="bg-white w-4/5 m-auto rounded-xl shadow-xl my-14">
     <TheHeader class="flex flex-wrap" />
-    <TheCategories class="flex justify-center mb-5" />
+    <TheCategories class="flex justify-center my-5" />
     <TheFilters class="px-10" />
     <TheBanner imageUrl="/banner.jpg" :handlerOnClick="() => router.push('/')" />
     <main class="py-10" ref="parent">
