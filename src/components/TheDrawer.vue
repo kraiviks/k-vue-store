@@ -9,9 +9,9 @@ import { onClickOutside, useSwipe } from '@vueuse/core'
 const store = useStore()
 const { cart, drawerIsOpen: isOpen } = storeToRefs(store)
 const { handlerOpenDrawer, handlerCloseDrawer } = store
-const { isSwiping, direction } = useSwipe(target)
-
 const target = ref(null)
+
+const { isSwiping, direction } = useSwipe(target)
 
 const handlerCreateOrder = () => {
   alert('Order is created')
@@ -34,8 +34,6 @@ onClickOutside(target, () => handlerCloseDrawer())
       ref="target"
     >
       <DrawerHead @click="handlerOpenDrawer" />
-      {{ isSwiping }}
-      {{ direction }}
       <div v-if="cart.products.length" class="flex flex-col h-[93%]">
         <CartListItem :items="cart.products" />
 
