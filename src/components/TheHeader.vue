@@ -1,15 +1,25 @@
 <script setup>
 import { useStore } from '@/store'
+import { useAutoAnimate } from '@formkit/auto-animate/vue';
 import { storeToRefs } from 'pinia'
+import { onMounted, ref } from 'vue';
 
 const store = useStore()
 const { favorities, cart } = storeToRefs(store)
 
 const { handlerOpenDrawer } = store
+
+const isShow = ref(false)
+
+onMounted(() => {
+  isShow.value = true
+})
+
+const [parent] = useAutoAnimate({duration: 450})
 </script>
 
 <template>
-  <header class="flex justify-between border-b border-slate-100 px-10 py-8">
+  <header class="flex justify-between border-b border-slate-100 px-10 py-8" ref="parent">
     <RouterLink to="/">
       <div class="flex items-center gap-4 max-md: mb-10">
         <img src="/logo.svg" alt="Logo" class="w-10" />
@@ -19,7 +29,7 @@ const { handlerOpenDrawer } = store
       </div>
     </RouterLink>
 
-    <nav class="flex items-center">
+    <nav class="flex items-center" v-if="isShow">
       <ul class="flex items-center gap-10">
         <li
           :class="cart.totalPrice.toFixed(1) > 0 ? 'text-black' : 'text-slate-400'"

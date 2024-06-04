@@ -11,7 +11,7 @@ onMounted(() => {
   isShow.value = true
 })
 
-const [parent] = useAutoAnimate({duration: 300})
+const [parent] = useAutoAnimate({duration: 450})
 </script>
 <template>
   <div
