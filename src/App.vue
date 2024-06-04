@@ -43,7 +43,7 @@ onMounted(async () => {
 
 <template>
   <TheDrawer />
-  <div class="bg-white w-4/5 m-auto rounded-xl shadow-xl my-14">
+  <div class="bg-white w-[90%] m-auto rounded-xl shadow-xl my-14">
     <TheHeader class="flex flex-wrap" />
     <TheCategories class="flex justify-center my-5" />
     <TheFilters class="px-10" />
