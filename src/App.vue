@@ -10,6 +10,7 @@ import TheBanner from '@/components/TheBanner.vue'
 import router from '@/router'
 import { useAutoAnimate } from '@formkit/auto-animate/vue'
 import { useSwipe } from '@vueuse/core'
+import TheModal from '@/components/TheModal.vue'
 
 const isShow = ref(false)
 const [parent] = useAutoAnimate({ duration: 500 })

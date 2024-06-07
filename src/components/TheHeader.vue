@@ -1,15 +1,16 @@
 <script setup>
 import { useStore } from '@/store'
-import { useAutoAnimate } from '@formkit/auto-animate/vue';
+import { useAutoAnimate } from '@formkit/auto-animate/vue'
 import { storeToRefs } from 'pinia'
-import { onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue'
+import TheAuth from '@/components/TheAuth.vue'
 
 const store = useStore()
 const { favorities, cart } = storeToRefs(store)
 const { handlerOpenDrawer } = store
 
 const isShow = ref(false)
-const [parent] = useAutoAnimate({duration: 450})
+const [parent] = useAutoAnimate({ duration: 450 })
 
 onMounted(() => {
   isShow.value = true
@@ -53,6 +54,9 @@ onMounted(() => {
             />
             <span>Закладки</span>
           </RouterLink>
+        </li>
+        <li>
+          <TheAuth />
         </li>
       </ul>
     </nav>
